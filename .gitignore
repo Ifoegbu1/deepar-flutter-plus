@@ -46,3 +46,4 @@ app.*.map.json
 /android/app/release
 .fvm/versions/3.27.4
 .vscode/settings.json
+example/android/app/libs/deepar.aar

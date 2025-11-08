@@ -5,6 +5,7 @@ An enhanced version of the official DeepAR Flutter SDK that adds support for loa
 This plugin is a fork of the official SDK for [DeepAR](https://pub.dev/packages/deepar_flutter). Platforms supported: Android & iOS.
 
 The current version of plugin supports:
+
 - Load effects from assets, file paths, and URLs with caching ✨ (New!)
 - Live AR previews ✅
 - Take screenshots ✅
@@ -12,9 +13,9 @@ The current version of plugin supports:
 - Flip camera ✅
 - Toggle Flash ✅
 
-| Support |Android  | iOS|
-|--|--|--|
-|  |SDK 23+  |  iOS 13.0+|
+| Support | Android | iOS       |
+| ------- | ------- | --------- |
+|         | SDK 23+ | iOS 13.0+ |
 
 > ⚠️ **BREAKING CHANGE in v0.1.7**: The `initialize()` method now returns an `InitializeResult` object with `success` and `message` properties instead of just a boolean. See the [initialization section](#flutter) for updated usage.
 >
@@ -23,21 +24,26 @@ The current version of plugin supports:
 > **New in v0.1.8**: Improved iOS camera initialization with better error handling and platform view creation.
 
 ## Installation
+
 Please visit the [developer website](https://developer.deepar.ai) to create a project and generate your separate license keys for both platforms.
 
 Once done, please add the latest `deepar_flutter_plus` dependency to your pubspec.yaml.
 
 **Android**:
- 1. compileSdkVersion should be 33 or more.
- 2. minSdkVersion should be 23 or more.
- 3. Download the native android dependencies from the [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
- 4. Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
+
+1.  compileSdkVersion should be 35 or more (required for 16KB page size support and Google Play Store compliance).
+2.  minSdkVersion should be 23 or more.
+3.  Download the native android dependencies from the [downloads](https://developer.deepar.ai/downloads) section and paste it in your flutter project at `android/app/libs/deepar.aar`.
+    - **Important**: For 16KB page size support, ensure you're using DeepAR Android SDK version 5.6.20 or later.
+4.  Make sure to `pub clean` & `flutter pub upgrade` to fetch latest working code.
 
 **iOS**:
- 1. iOS 13.0+ is required.
- 2. If you encounter the error `'deepar_flutter-Swift.h' file not found`, make sure you're using the latest version of the plugin which fixes this issue.
+
+1.  iOS 13.0+ is required.
+2.  If you encounter the error `'deepar_flutter-Swift.h' file not found`, make sure you're using the latest version of the plugin which fixes this issue.
 
 Also add the following permission requests in your AndroidManifest.xml
+
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -47,6 +53,7 @@ Also add the following permission requests in your AndroidManifest.xml
 ```
 
 Ensure to add these rules to `proguard-rules.pro` else app might crash in release build
+
 ```
 -keepclassmembers class ai.deepar.ar.DeepAR { *; }
 -keepclassmembers class ai.deepar.ar.core.videotexture.VideoTextureAndroidJava { *; }
@@ -54,6 +61,7 @@ Ensure to add these rules to `proguard-rules.pro` else app might crash in releas
 ```
 
 **iOS:**
+
 1. Ensure your app iOS deployment version is 13.0+.
 2. Do a flutter clean & install pods.
 3. To handle camera and microphone permissions, please add the following strings to your info.plist.
@@ -65,7 +73,9 @@ Ensure to add these rules to `proguard-rules.pro` else app might crash in releas
 <key>NSMicrophoneUsageDescription</key>
 <string>---Reason----</string>
 ```
+
 6. Also add the following to your `Podfile` file:
+
 ```ruby
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -90,10 +100,10 @@ post_install do |installer|
 end
 ```
 
-
 <a name="flutter"></a>**Flutter:**
 
-1. Initialize  `DeepArControllerPlus` by passing in your license keys for both platforms.
+1. Initialize `DeepArControllerPlus` by passing in your license keys for both platforms.
+
 ```dart
 final DeepArControllerPlus _controller = DeepArControllerPlus();
 final result = await _controller.initialize(
@@ -129,6 +139,7 @@ if (result.success) {
 ```
 
 2. Place the DeepArPreviewPlus widget in your widget tree to display the preview.
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -160,15 +171,18 @@ await _controller.switchFaceMask("https://example.com/masks/funny_mask.deepar");
 ```
 
 Note:
+
 - When using file paths, make sure the app has proper permissions to access the file location
 - When using URLs, effects are automatically cached for better performance and offline access
 
 4. To take a picture, use `takeScreenshot()` which returns the picture as file.
+
 ```dart
 final File file = await _controller.takeScreenshot();
 ```
 
 5. To record a video, please use:
+
 ```dart
 if (_controller.isRecording) {
     _controller.stopVideoRecording();

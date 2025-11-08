@@ -1,6 +1,26 @@
+## 0.2.1
+
+- Fixed Android 16KB page size compatibility ([#9](https://github.com/Ifoegbu1/deepar-flutter-plus/issues/9)) 🛠️
+  - Updated Android Gradle Plugin from 7.1.3 to 8.5.1 for 16KB page size support
+  - Updated Gradle wrapper from 7.1 to 8.5
+  - Updated compileSdkVersion from 31 to 35 (also fixes issues [#6](https://github.com/Ifoegbu1/deepar-flutter-plus/issues/6) and [#7](https://github.com/Ifoegbu1/deepar-flutter-plus/issues/7))
+  - Updated CameraX dependencies from alpha versions (1.1.0-alpha01) to stable versions (1.3.1) with 16KB support
+  - Added proper NDK configuration and packaging options for 16KB page size alignment
+  - Ensures Google Play Store compliance and prevents app rejections
+  - Updated README with 16KB page size requirements and DeepAR SDK version recommendations
+  - Updated example app Android configuration to match plugin updates
+  - Enhanced example app with improved AR experience 🎨
+    - Added permission handling for camera and microphone
+    - Implemented download progress tracking for effects from URLs
+    - Added loading overlay with thumbnail support and progress indicator
+    - Improved effect switching with automatic caching using flutter_cache_manager
+    - Enhanced error handling with user-friendly messages
+    - Better iOS-specific initialization handling
+
 ## 0.2.0
 
 - Version bump for new feature development 🚀
+
   - Preparing for implementation of pause and resume camera methods
   - Improved stability and performance
 
@@ -21,6 +41,7 @@
 ## 0.1.8
 
 - Fixed iOS camera initialization issues 🛠️
+
   - Added better error handling and debugging for iOS initialization
   - Improved platform view creation process with proper timing
   - Added fallback dimensions when native dimensions can't be retrieved
@@ -63,7 +84,6 @@
   - Properly reset controller state during destroy
   - Improved initialization process with better error handling
   - Added safeguards for reinitializing the controller
-
 
 ## 0.1.3
 

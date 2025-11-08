@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'deepar_flutter_plus'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Enhanced Flutter SDK for DeepAR with extended functionality.'
   s.description      = <<-DESC
 An enhanced version of the official DeepAR Flutter SDK that adds support for loading AR effects from multiple sources including assets, file paths, and URLs with automatic caching.
